@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body style="background-color: #ebebeb;padding: 20px 0;font-size: 14px;">
+  <div style="max-width: 800px;margin: 0 auto;background-color: white;padding: 30px;">
+    <p style="margin-bottom: 15px;">
+      Hello {{ .ApplicantName }},
+    </p>
+    <p style="margin-bottom: 10px;">
+      You have <b>not completed</b> your job application for the {{ .JobTitle }} position at {{ .CompanyName }}.
+    </p>
+    <p style="margin-bottom: 10px;">
+      In order to complete your application, please <a href="{{ .ApplyURL }}">apply here on our applicant tracking system</a>. If you have not created an account with us before, you will need to sign up for a free applicant account.
+    </p>
+    <p style="margin-bottom: 10px;">
+      This is an automated email, please do not reply.
+    </p>
+  </div>
+</body>
+</html>

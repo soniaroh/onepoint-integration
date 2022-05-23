@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body style="background-color: #ebebeb;padding: 20px 10px;font-size: 14px;">
+  <div style="max-width: 800px;margin: 0 auto;background-color: white;padding: 30px;">
+    <p style="margin-bottom: 15px;">
+      Hello {{ .ApplicantName }},
+    </p>
+    <p style="margin-bottom: 10px;">
+      Thank you for applying at <b>{{ .CompanyName }}</b>. Please fill out <a href="{{ .Link }}">this questionnaire</a>.
+    </p>
+    <p style="margin-bottom: 10px;">
+      This is an automated email, please do not reply.
+    </p>
+  </div>
+</body>
+</html>

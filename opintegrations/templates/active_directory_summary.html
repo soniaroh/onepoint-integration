@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style type="text/css">
+    #mainbox {
+      padding: 30px;
+      border-radius: 5px;
+    }
+    #footer {
+      padding: 40px 0 0 0;
+      font-size: 10px;
+    }
+    @media only screen and (max-width: 600px) {
+      #mainbox {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body style="background-color: #ebebeb;padding: 20px 10px;font-size: 14px;line-height: 1.2;">
+  <div id="mainbox" style="max-width: 800px;margin: 0 auto;text-align: left;background-color: white;padding: 30px;border-radius: 5px;">
+    <div style="text-align: center;margin: 20px 0;">
+      <img style="width: 100%;max-width: 150px;" src="https://storage.googleapis.com/onepoint-static/OnePoint-Logo-2018-blue.png">
+    </div>
+    {{ .Explanation }}
+    <p style="margin-bottom: 10px;">
+      This is an automated email, please do not reply.
+    </p>
+    <div id="footer" style="padding: 40px 0 0 0;font-size: 10px;">
+      You are receiving this email because of your company's settings. Configure this setting on <a href="https://connect.onehcm.com/products/user-provisioning">OnePoint Connect</a>.
+    </div>
+  </div>
+</body>
+</html>

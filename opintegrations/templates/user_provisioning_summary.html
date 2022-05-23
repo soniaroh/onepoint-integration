@@ -1,0 +1,118 @@
+{{ $successCount := 0 }}
+{{ $errCount := len .ErrdServices }}
+{{ if .HiredTrueFiredFalse }}
+  {{ $successCount = len .HiredResults }}
+{{ else }}
+  {{ $successCount = len .FiredResults }}
+{{ end }}
+<!DOCTYPE html>
+<html>
+<head>
+  <style type="text/css">
+    table {
+      text-align: center;
+    }
+    #mainbox {
+      padding: 30px;
+      border-radius: 5px;
+    }
+    #footer {
+      padding: 40px 0 0 0;
+      font-size: 10px;
+    }
+    @media only screen and (max-width: 600px) {
+      #mainbox {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body style="background-color: #ebebeb;padding: 20px 10px;font-size: 14px;line-height: 1.2;">
+  <div id="mainbox" style="max-width: 800px;margin: 0 auto;text-align: left;background-color: white;padding: 30px;border-radius: 5px;">
+    <div style="text-align: center;margin: 20px 0;">
+      <img style="width: 100%;max-width: 150px;" src="https://storage.googleapis.com/onepoint-static/OnePoint-Logo-2018-blue.png">
+    </div>
+    <p>
+      OnePoint User Provisioning has processed the
+      {{ if .HiredTrueFiredFalse }}hiring{{ else }}firing{{ end }} of employee <b>{{ .EmployeeName }}</b>.
+    </p>
+    {{ if .HiredTrueFiredFalse }}
+      {{ if gt $successCount 0 }}
+        <p>
+          Below are the new usernames and passwords, the new user should login immediately and create a new password in all services.
+        </p>
+      {{ end }}
+    {{ end }}
+    {{ if not .HiredTrueFiredFalse }}
+      {{ if gt $successCount 0 }}
+        <p>
+          Below are the services that the employee was successfully deactivated from.
+        </p>
+      {{ end }}
+    {{ end }}
+    {{ if gt $successCount 0 }}
+      {{ if .HiredTrueFiredFalse }}
+        <table style="width: 100%;margin: 10px 0;border: 1px solid black;border-collapse: collapse;text-align: center;">
+          <thead>
+            <tr>
+              <th style="font-weight: 800;border: 1px solid black;">Service</th>
+              <th style="font-weight: 800;border: 1px solid black;">Username</th>
+              <th style="font-weight: 800;border: 1px solid black;">Password</th>
+            </tr>
+          </thead>
+          <tbody>
+          {{ range .HiredResults }}
+            <tr>
+              <th style="font-weight: 400;border: 1px solid black;">{{ .ServiceName }}</th>
+              <th style="font-weight: 400;border: 1px solid black;">{{ .Username }}</th>
+              <th style="font-weight: 400;border: 1px solid black;">{{ .Password }}</th>
+            </tr>
+          {{ end }}
+          </tbody><tbody>
+        </tbody></table>
+      {{ else }}
+        <table style="width: 100%;margin: 10px 0;border: 1px solid black;border-collapse: collapse;text-align: center;">
+          <thead>
+            <tr>
+              <th style="font-weight: 800;border: 1px solid black;border-collapse: collapse;">Service</th>
+              <th style="font-weight: 800;border: 1px solid black;border-collapse: collapse;">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+          {{ range .FiredResults }}
+            <tr>
+              <th style="font-weight: 400;border: 1px solid black;border-collapse: collapse;">{{ .ServiceName }}</th>
+              <th style="font-weight: 400;border: 1px solid black;border-collapse: collapse;">{{ .Description }}</th>
+            </tr>
+          {{ end }}
+          </tbody><tbody>
+        </tbody></table>
+      {{ end }}
+    {{ end }}
+    {{ if gt $errCount 0 }}
+      <p style="margin-top: 20px;">
+        An error occured with the following services, please login to <a href="https://connect.onehcm.com/products/user-provisioning">OnePoint Connect</a> for more information.
+      </p>
+      <table style="width: 100%;margin: 10px 0;border: 1px solid black;border-collapse: collapse;text-align: center;">
+        <thead>
+          <tr>
+            <th style="font-weight: 800;border: 1px solid black;border-collapse: collapse;">Failed Services</th>
+            <th style="font-weight: 800;border: 1px solid black;border-collapse: collapse;">Error Description</th>
+          </tr>
+        </thead>
+        <tbody>
+        {{ range .ErrdServices }}
+          <tr>
+            <th style="font-weight: 400;border: 1px solid black;border-collapse: collapse;">{{ .Name }}</th>
+            <th style="font-weight: 400;border: 1px solid black;border-collapse: collapse;">{{ .Description }}</th>
+          </tr>
+        {{ end }}
+        </tbody><tbody>
+      </tbody></table>
+    {{ end }}
+    <div id="footer" style="padding: 40px 0 0 0;font-size: 10px;">
+      You are receiving this email because of your company's settings. Configure this setting on <a href="https://connect.onehcm.com/products/user-provisioning">OnePoint Connect</a>.
+    </div>
+  </div>
+</body>
+</html>

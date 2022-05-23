@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body style="background-color: #ebebeb;padding: 20px 0;font-size: 14px;">
+  <div style="max-width: 800px;margin: 0 auto;background-color: white;padding: 30px;">
+    <p style="margin-bottom: 15px;">
+      Hello {{ .ApplicantName }},
+    </p>
+    <p style="margin-bottom: 10px;">
+      Thank you for applying for the <b>{{ .JobTitle }}</b> position at <b>{{ .CompanyName }}</b>. Please take these last steps:
+    </p>
+    <ul style="margin-bottom: 10px;">
+      <li>
+        <b>Log in <a href="{{ .ApplyURL }}">here</a></b>
+      </li>
+      <li>
+        Upload your resume - this will fill out the application for you!
+      </li>
+      <li>
+        Review for completion and accuracy
+      </li>
+      <li>
+        Sign the Application electronically
+      </li>
+      <li>
+        AND DON'T FORGET to click the button to submit your application. To do this, click the SUBMIT APPLICATION button on the last tab
+      </li>
+    </ul>
+    <p style="margin-bottom: 10px;">
+      Failing to complete any of these steps will prohibit or delay your progression to the next step of the recruiting and hiring process.
+    </p>
+    <p style="margin-bottom: 10px;">
+      This is an automated email, please do not reply.
+    </p>
+  </div>
+</body>
+</html>
